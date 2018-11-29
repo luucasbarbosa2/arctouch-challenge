@@ -30,7 +30,9 @@ use App\Model\Entity\Component;
  * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
     public $language;
+
     /**
      * Initialization hook method.
      *
@@ -57,12 +59,14 @@ class AppController extends Controller {
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
-        
+
         $browserLanguage = str_replace("-", "_", explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0]);
+
         $this->getRequest()->getSession()->write('Config.language', $browserLanguage);
-        
-        
+
+
         $this->getRequest()->getSession()->write('Config.mobile', $this->request->is('mobile'));
+
         I18n::setLocale($browserLanguage);
     }
 
@@ -72,23 +76,20 @@ class AppController extends Controller {
         $component->component = $componentName;
         return $component->build();
     }
+
     //return multiples components with the same data
     public function renderMultiComponent($data, $componentArrayName) {
         $component = new Component;
         $component->data = $data;
-        foreach($componentArrayName as $componentName){
-
-            
-
+        foreach ($componentArrayName as $componentName) {
             $component->component = $componentName;
             $components[$componentName] = $component->build();
-                    
         }
-         return $components;   
-
+        return $components;
     }
-    
-    public function _toArray($object){
+
+    public function _toArray($object) {
         return json_decode(json_encode($object), true);
     }
+
 }

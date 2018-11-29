@@ -7,7 +7,6 @@ class Modal {
         $('#' + this.modalName).modal();
     }
     get hide() {
-        alert('hide')
         $('#' + this.modalName).modal('hide');
     }
 }
@@ -26,10 +25,16 @@ class Carousel {
             cellAlign: 'left',
             contain: true
         });
+        
+        $('.upcoming-carousel').flickity({
+            pageDots: false,
+            cellAlign: 'left',
+            contain: true
+        });
 
     }
     get cellWidth() {
-
+        $(".carousel-cell-upcoming").css('width', Math.round((100 / ($(document).width() / 250))/ 2) + '%');
         $(".carousel-cell").css('width', Math.round(100 / ($(document).width() / 250)) + '%');
 
 

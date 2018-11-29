@@ -22,7 +22,13 @@ and open the template in the editor.
     
 }
 
+.navbar-brand:hover{
+    color: #fff !important
+}
 
+.response-movies{
+    text-align: center
+}
 .hidden{
     display: none;
 }
@@ -57,6 +63,17 @@ and open the template in the editor.
 .rating-checked{
     color: yellow
 }
+.carousel-upcoming{
+    margin-top: 40px
+}
+
+.load-ajax-icon{
+    text-align: center;
+}
+.load-ajax-icon img{
+    width: 80px;
+}
+
 
 .detailBox {
     /*width:320px;*/
@@ -137,6 +154,7 @@ and open the template in the editor.
 }
 .tag{
     margin-bottom: 10px;
+    margin-right: 10px
 }
 
 .movie-container{
@@ -209,6 +227,16 @@ html {
     color: #ffffff;
 }
 
+a{
+    text-decoration: none;
+    color: inherit
+    
+}
+a:hover{
+    text-decoration: none;
+    color: inherit
+    
+}
 .videoWrapper {
     position: relative;
     padding-bottom: 45.25%; /* 16:9 */
@@ -241,7 +269,7 @@ html {
     height: auto;
     display: inline-block;
     /*height: 370px;*/
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     padding-bottom: 10px;
     background-size: cover; 
     background-repeat: no-repeat;
@@ -281,6 +309,23 @@ html {
     .carousel-content{
         padding-left: 15px;
         padding-right: 15px
+    }
+    .response-cell {
+        width: 50%;
+    }
+    
+
+}
+
+@media only screen and (max-width: 390px) {
+
+    .response-cell {
+        width: 49%;
+    }
+    .main-search:focus{
+        border: none;
+        width: 150px;
+
     }
 
 }

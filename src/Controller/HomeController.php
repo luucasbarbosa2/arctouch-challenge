@@ -1,14 +1,9 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace App\Controller;
 
 use App\Model\Entity\Home;
+use App\Model\Entity\Movies;
 
 /**
  * Description of HomeController
@@ -19,35 +14,52 @@ class HomeController extends AppController {
 
     public function index() {
 
-        
-
-        
-        $home = new Home();
-        $popular = $home->getByPopularity('movie');
+        $movies = new Movies;
+        //get popular movies
+        $popular = $movies
+                ->getByPopularity('movie'); 
+        //get genres
         $genres = $this
-                ->_toArray($home
+                ->_toArray($movies
                         ->getGenres('movie')
-                            ->genres
-                            );
+                        ->genres); 
+        //get banner       
+        $movie = $this
+                ->_toArray(array_slice($popular
+                        ->results, 0, 5));
+        $movie['genres'] = $genres;     
         shuffle($genres);
         
-        
+        //search by gender
         foreach(array_slice($genres, 0, 5) as $genre){
+            
             $moviesByGenres[$genre['name']] = $this
-                    ->_toArray($home
+                    ->_toArray($movies
                             ->getByGenre('movie', $genre['id']))['results'];
         }
-        $banner = $this->renderComponent($this
-                ->_toArray(array_slice($popular
-                        ->results, 0, 5)), 'main-slider');
+        
+        //get upcoming films by page
+        $upcomingMovies = $this
+                ->_toArray($movies
+                        ->upcoming('1'));
+
+        //render componentss
+        $upcoming = $this
+                ->renderComponent( $upcomingMovies, 'upcoming-carousel');
+        $banner = $this
+                ->renderComponent($movie, 'main-slider');
         $slider = $this
                 ->renderComponent($moviesByGenres, 'main-carousel');
 
-
-
-
+        
+        
+        
+        //set variables to view
+        $this->set(compact('upcoming'));
         $this->set(compact('banner'));
         $this->set(compact('slider'));
     }
+    
+    
 
 }

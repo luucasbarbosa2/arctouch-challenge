@@ -40,7 +40,6 @@ class PagesController extends AppController
      */
     public function display()
     {
-        $render = "teste";
-        $this->set(compact('render'));
+
     }
 }

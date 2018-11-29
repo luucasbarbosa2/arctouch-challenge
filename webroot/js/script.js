@@ -4,24 +4,62 @@
 
 $(document).ready(function (event) {
     const config = new Config();
-    const modal = new Modal('teste');
     const carousel = new Carousel();
     carousel.initialize;
-    if (config.status === undefined) {
-//        modal.show
-    }
+
+    $(document).on('click', ".search-menu", function () {  
+
+        $(".search-box").focus();
     
-    $(document).on('keyup', ".reative-search", function () {
-        $(".reative-search").val($(this).val());
-        $(".search-string").html($(this).val());
     });
     
+    
+    $(document).scroll(function(){
+
+        if(($('.carousel-upcoming').offset().top - 50) < $(window).scrollTop()){
+            $(".menu").addClass('bg-dark')
+        }else{
+            $(".menu").removeClass('bg-dark')
+        }
+
+    });
+    
+
+    $(document).on('click', ".pagination-item", function () {       
+        var ajax = {url: 'movies/findUpcoming/'+$(this).attr('data-page')};
+        $(this).parent().parent().hide();
+        $(".load-ajax-icon").show();
+        
+        $.ajax({
+            url: ajax.url,
+            type: 'POST',
+            dataType: 'JSON',
+
+        })
+                .done(function (data) {
+                    $(".carousel-upcoming").html(data);
+                    carousel.initialize;
+
+                })
+                .fail(function (data) {
+
+                })
+                .always(function (data) {
+                  
+                });
+
+    });
+
+    $(document).on('keyup', ".reative-search", function () {
+        $(".reative-search").val($(this).val());
+
+    });
 
     search();
     function search() {
         let search = new Search();
 
-        $(".search-box").keyup(function () {
+        $(".search-box").stop().keyup(function () {
             $(".search-string").html($(this).val())
 
             if ($(this).val().length > 0) {
@@ -47,9 +85,10 @@ $(document).ready(function (event) {
 
                             });
                 }
-            } else if ($(this).val().length == 0) {
+            } else if ($(this).val().length === 0) {
+
                 search.hide();
-                 $(".search-response").addClass('hidden');
+                $(".search-response").addClass('hidden');
 
             }
         });
@@ -61,9 +100,7 @@ $(document).ready(function (event) {
     $(window).resize(function () {
         carousel.initialize;
     });
-    $("#modal-close").click(function (event) {
-//        modal.hide
-    });
+
 
 
     $(document).on('mouseover', ".carousel-cell", function () {

@@ -17,36 +17,46 @@ use App\Model\Entity\Movies;
  */
 class MoviesController extends AppController {
 
-    public function initialize() {;
+    public function initialize() {
+
         parent::initialize();
         $this->loadComponent('RequestHandler');
     }
 
     //put your code here
     public function details($id) {
+        
+        //change menu position
         $notfixed = true;
 
         $movies = new Movies;
         $movie = $this->_toArray($movies->find($id));
-
         $components = ['movie-header', "key-genre", "credits", "similar", "review-box", "movie-title"];
-
         $html = $this->renderMultiComponent($movie, $components);
 
         $this->set(compact('html'));
-
         $this->set(compact('notfixed'));
     }
 
     public function findByName() {
-//        $this->disableAutoRender();
+
         $movies = new Movies;
         $query = $this->request->getData();
         $movie = $this->_toArray($movies->findByName($query['data']));
         $html = $this->renderComponent($movie['results'], "search-response");
         $this->set("html", $html);
         $this->set('_serialize', 'html');
-        
     }
+
+    public function findUpcoming($page = "1") {
+        $movies = new Movies;
+        $movie = $this->_toArray($movies->upcoming($page));
+        $html = $this->renderComponent($movie, "upcoming-carousel");
+        
+        
+        $this->set("html", $html);
+        $this->set('_serialize', 'html');
+    }
+    
 
 }
