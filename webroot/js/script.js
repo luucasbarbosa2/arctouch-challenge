@@ -1,31 +1,23 @@
-
-
-
-
-$(document).ready(function (event) {
+$(document).ready(function () {
     const config = new Config();
     const carousel = new Carousel();
     carousel.initialize;
-
-    $(document).on('click', ".search-menu", function () {  
-
+    ($(window).resize(function () {
+        carousel.initialize;
+    }));
+    ($(document).on('click', ".search-menu", function () {  
         $(".search-box").focus();
+    }));
     
-    });
-    
-    
-    $(document).scroll(function(){
-
+    ($(document).scroll(function(){
         if(($('.carousel-upcoming').offset().top - 50) < $(window).scrollTop()){
             $(".menu").addClass('bg-dark')
         }else{
             $(".menu").removeClass('bg-dark')
         }
-
-    });
+    }));
     
-
-    $(document).on('click', ".pagination-item", function () {       
+    ($(document).on('click', ".pagination-item", function () {       
         var ajax = {url: 'movies/findUpcoming/'+$(this).attr('data-page')};
         $(this).parent().parent().hide();
         $(".load-ajax-icon").show();
@@ -34,7 +26,6 @@ $(document).ready(function (event) {
             url: ajax.url,
             type: 'POST',
             dataType: 'JSON',
-
         })
                 .done(function (data) {
                     $(".carousel-upcoming").html(data);
@@ -48,20 +39,20 @@ $(document).ready(function (event) {
                   
                 });
 
-    });
+    }));
 
-    $(document).on('keyup', ".reative-search", function () {
+    ($(document).on('keyup', ".reative-search", function () {
         $(".reative-search").val($(this).val());
 
-    });
+    }));
 
     search();
     function search() {
         let search = new Search();
 
         $(".search-box").stop().keyup(function () {
-            $(".search-string").html($(this).val())
-
+            
+            $(".search-string").html($(this).val());
             if ($(this).val().length > 0) {
                 if (!$(".menu").hasClass("bg-dark")) {
                     search.show();
@@ -72,7 +63,7 @@ $(document).ready(function (event) {
                         url: ajax.url,
                         type: 'POST',
                         dataType: 'JSON',
-                        data: {data: ajax.query},
+                        data: {data: ajax.query}
                     })
                             .done(function (data) {
                                 $(".search-response").removeClass('hidden');
@@ -86,7 +77,6 @@ $(document).ready(function (event) {
                             });
                 }
             } else if ($(this).val().length === 0) {
-
                 search.hide();
                 $(".search-response").addClass('hidden');
 
@@ -95,41 +85,31 @@ $(document).ready(function (event) {
     }
 
 
-
-
-    $(window).resize(function () {
-        carousel.initialize;
-    });
-
-
-
-    $(document).on('mouseover', ".carousel-cell", function () {
+    ($(document).on('mouseover', ".carousel-cell", function () {
         $(this).find('.carousel-transparency').find('.carousel-info').stop().fadeIn(500);
         $(this).find('.carousel-transparency').stop().animate({
             opacity: 0.9,
-//            backgroundColor: '#ff4'
-
         }, 300, function () {
-//            $(this).find('p').fadeIn(500);;
-        });
-    });
 
-    $(document).on('mouseout', ".carousel-cell", function () {
+        });
+    }));
+
+    ($(document).on('mouseout', ".carousel-cell", function () {
         $(this).find('.carousel-transparency .carousel-info').stop().fadeOut(500);
         $(this).find('.carousel-transparency').stop().animate({
             opacity: 0.3,
-//            backgroundColor: '#ff4'
+
 
         }, 300, function () {
 
 
         });
-    });
+    }));
 
 
-    $(".show-all").click(function () {
+    ($(".show-all").click(function () {
         $(".not").toggleClass('hidden', "show")
-    });
+    }));
 
 
 });

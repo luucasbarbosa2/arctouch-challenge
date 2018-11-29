@@ -1,7 +1,7 @@
 
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Developed by <a href = "http://lucasbarbosa.me">Lucas Barbosa</a></p>
     </div>
     <!-- /.container -->
 </footer>
