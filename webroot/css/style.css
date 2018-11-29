@@ -10,7 +10,7 @@ and open the template in the editor.
     Author     : Lucas
 */
 
-
+/*general configs*/
 .loader{
     max-width: 1920px;
     width: 100%;
@@ -26,9 +26,7 @@ and open the template in the editor.
     color: #fff !important
 }
 
-.response-movies{
-    text-align: center
-}
+
 .hidden{
     display: none;
 }
@@ -38,14 +36,7 @@ and open the template in the editor.
     width: 300px;
 
 }
-@-webkit-keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
-}  
-@keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
-}
+
 
 .hidden-transition{
     display: none;
@@ -75,12 +66,7 @@ and open the template in the editor.
 }
 
 
-.detailBox {
-    /*width:320px;*/
-    border:1px solid #bbb;
-
-    font-family: 'Open Sans', sans-serif;
-}
+/*review box*/
 .titleBox {
     background-color:#fdfdfd;
     padding:10px;
@@ -147,10 +133,19 @@ and open the template in the editor.
     border-top:1px dotted #bbb;
     padding:10px;
 }
+
+/*menu*/
 .menu{
     background-color: rgba(3, 0, 0, 0.3);
 
 
+}
+
+
+
+/*basic configs */
+html {
+    touch-action: manipulation;
 }
 .tag{
     margin-bottom: 10px;
@@ -162,15 +157,97 @@ and open the template in the editor.
     margin-top: 30px;
 }
 
+.shadow h2{
+    text-shadow: 2px 2px #000
+}
+
+.shadow h5{
+    text-shadow: 1px 1px #000
+}
+
+
+
+.menu  a{
+    color: #ffffff;
+}
+
+a{
+    text-decoration: none;
+    color: inherit
+    
+}
+a:hover{
+    text-decoration: none;
+    color: inherit
+    
+}
+
+/*video responsive*/
+.videoWrapper {
+    position: relative;
+    padding-bottom: 45.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 640px;
+    max-height: 360px;
+    width: 100%;
+    height: 100%;
+}
+
+/*search response */
+
+.response-movies{
+    text-align: center
+}
+.search-response{
+    padding: 20px;
+}
+.response-cell {
+    /*width: 15%;*/  
+    height: auto;
+    display: inline-block;
+    /*height: 370px;*/
+    /*margin-right: 10px;*/
+    padding-bottom: 10px;
+    background-size: cover; 
+    background-repeat: no-repeat;
+
+}
+
+/*main carousel*/
+.carousel-cell :hover{
+    cursor: pointer
+
+}
+.main-carousel{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.carousel-cell {
+    width: 18%;  
+    height: 370px;
+    margin-right: 10px;
+    background-size: cover; 
+    background-repeat: no-repeat;
+
+}
+.carousel-item{
+    background-position: inherit !important;
+    touch-action: pan-y pan-x pinch-zoom;
+
+
+}
 .carousel-label{
     margin-left: 15px;
     /*color: #fff;*/
-
-
 }
-.details-title{
-    font-weight: 800;
-}
+
 .carousel-transparency{
     width: 100%;
     height: 100%;
@@ -191,102 +268,27 @@ and open the template in the editor.
     font-size: 0.8em
 }
 
+/*details*/
 
-html {
-    touch-action: manipulation;
-}
-
-.card{
-    color: #000;
+.details-title{
+    font-weight: 800;
 }
 
-/*body{
-    color: #fff;
-     Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#191818+0,494949+36,777777+62,b7b7b7+100 
-    background: #191818;  Old browsers 
-    background: -moz-linear-gradient(top, #191818 0%, #494949 36%, #777777 62%, #b7b7b7 100%);  FF3.6-15 
-    background: -webkit-linear-gradient(top, #191818 0%,#494949 36%,#777777 62%,#b7b7b7 100%);  Chrome10-25,Safari5.1-6 
-    background: linear-gradient(to bottom, #191818 0%,#494949 36%,#777777 62%,#b7b7b7 100%);  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191818', endColorstr='#b7b7b7',GradientType=0 );  IE6-9 
-}*/
-.shadow h2{
-    text-shadow: 2px 2px #000
+.detailBox {
+    /*width:320px;*/
+    border:1px solid #bbb;
+
+    font-family: 'Open Sans', sans-serif;
 }
 
-.shadow h5{
-    text-shadow: 1px 1px #000
-}
-.carousel-item{
-    background-position: inherit !important;
-    touch-action: pan-y pan-x pinch-zoom;
-
-
-}
-
-.menu  a{
-    color: #ffffff;
-}
-
-a{
-    text-decoration: none;
-    color: inherit
-    
-}
-a:hover{
-    text-decoration: none;
-    color: inherit
-    
-}
-.videoWrapper {
-    position: relative;
-    padding-bottom: 45.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-.videoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    max-width: 640px;
-    max-height: 360px;
-    width: 100%;
-    height: 100%;
-}
-.carousel-cell {
-    width: 18%;  
-    height: 370px;
-    margin-right: 10px;
-    background-size: cover; 
-    background-repeat: no-repeat;
-
-}
-
-.search-response{
-    padding: 20px;
-}
-.response-cell {
-    /*width: 15%;*/  
-    height: auto;
-    display: inline-block;
-    /*height: 370px;*/
-    /*margin-right: 10px;*/
-    padding-bottom: 10px;
-    background-size: cover; 
-    background-repeat: no-repeat;
-
-}
-.carousel-cell :hover{
-    cursor: pointer
-
-}
-.main-carousel{
-    margin-top: 10px;
-    margin-bottom: 15px;
-    margin-left: 10px;
-}
 .detail-button{
     margin-top: 10px
 }
+
+
+
+/*media queries*/
+
 @media only screen and (max-width: 400px) {
 
     .carousel-item{
@@ -350,3 +352,13 @@ a:hover{
 }
 
 
+/*transition*/
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}  
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
